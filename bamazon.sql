@@ -10,9 +10,6 @@ CREATE TABLE products (
     stock_quantity INT(10) NOT NULL
 );
 
-
-
-
 INSERT INTO products ( product_name , department_name , price,stock_quantity)
 VALUES  ("Apple AirPods","Electronics",159.00,37),
         ("Oral-B 7000 Electric Toothbrush ","Beauty & Personal Care",119.94,50),

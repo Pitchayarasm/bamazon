@@ -14,13 +14,13 @@ function start() {
         function(err,res){
             var items = res.length+1
             if (err) throw err;
-            console.log("\n *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("------------------------------------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
+            console.log("----------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
                 console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
                 console.log("Department : " + res[i].department_name)
                 console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("------------------------------------------------------------------------------------------------------------")
+                console.log("----------------------------------------------------------------------------------")
             }
             inquirer.prompt([{
                 type : "input",

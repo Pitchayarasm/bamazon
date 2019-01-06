@@ -39,13 +39,13 @@ function product() {
         "SELECT * FROM products",
         function(err,res){
             if (err) throw err;
-            console.log("\n *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("------------------------------------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
+            console.log("----------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
                 console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
                 console.log("Department : " + res[i].department_name)
                 console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("------------------------------------------------------------------------------------------------------------")
+                console.log("----------------------------------------------------------------------------------")
             }
         }
     )
@@ -57,13 +57,13 @@ function low() {
         [ 0 , 5 ],
         function(err,res){
             if (err) throw err;
-            console.log("\n *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * View Low Inventory *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("------------------------------------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * View Low Inventory *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
+            console.log("----------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
                 console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
                 console.log("Department : " + res[i].department_name)
                 console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("------------------------------------------------------------------------------------------------------------")
+                console.log("----------------------------------------------------------------------------------")
             }
         }
     )
@@ -75,13 +75,13 @@ function add() {
         function(err,res){
             var items = res.length+1
             if (err) throw err;
-            console.log("\n *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *¤°•★•:*´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("------------------------------------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
+            console.log("----------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
                 console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
                 console.log("Department : " + res[i].department_name)
                 console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("------------------------------------------------------------------------------------------------------------")
+                console.log("----------------------------------------------------------------------------------")
             }
             inquirer.prompt([{
                 type : "input",
