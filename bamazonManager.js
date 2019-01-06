@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var table = require('cli-table');
 var connection = mysql.createConnection({
     host: "localhost",
     port: "3306",
@@ -38,15 +39,16 @@ function product() {
     connection.query(
         "SELECT * FROM products",
         function(err,res){
+            var Table = new table({
+                head: ['ID', 'Product Name', 'Department', 'Price', 'Stock Quantity']
+            });
             if (err) throw err;
-            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("----------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *´¨`*");
+            console.log("------------------------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
-                console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
-                console.log("Department : " + res[i].department_name)
-                console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("----------------------------------------------------------------------------------")
+                Table.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
             }
+            console.log(Table.toString());
         }
     )
 }
@@ -56,15 +58,16 @@ function low() {
         "SELECT * FROM products WHERE stock_quantity BETWEEN ? AND ? ",
         [ 0 , 5 ],
         function(err,res){
+            var Table = new table({
+                head: ['ID', 'Product Name', 'Department', 'Price', 'Stock Quantity']
+            });
             if (err) throw err;
-            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * View Low Inventory *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("----------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *´¨`*");
+            console.log("------------------------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
-                console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
-                console.log("Department : " + res[i].department_name)
-                console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("----------------------------------------------------------------------------------")
+                Table.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
             }
+            console.log(Table.toString());
         }
     )
 }
@@ -73,16 +76,17 @@ function add() {
     connection.query(
         "SELECT * FROM products",
         function(err,res){
+            var Table = new table({
+                head: ['ID', 'Product Name', 'Department', 'Price', 'Stock Quantity']
+            });
             var items = res.length+1
             if (err) throw err;
-            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Products for Sale *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("----------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *´¨`*");
+            console.log("------------------------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
-                console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
-                console.log("Department : " + res[i].department_name)
-                console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("----------------------------------------------------------------------------------")
+                Table.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
             }
+                console.log(Table.toString());
             inquirer.prompt([{
                 type : "input",
                 message : "What is the ID of the item you would like to add inventory?",
@@ -112,7 +116,7 @@ function add() {
                 }
             }]).then(function(userInput) {
                 var id = userInput.id - 1;
-                var qty =parseInt(userInput.qty);
+                var qty = parseInt(userInput.qty);
                 var stock = res[id].stock_quantity;
                 connection.query(
                     "UPDATE products SET ? WHERE ?",
@@ -123,7 +127,7 @@ function add() {
                     }],
                     function(err,res) {
                         if (err) throw err;
-                        console.log("Congratulations, quantity added!")
+                        console.log("Congratulations, quantity added!");
                     });
             });
         })
@@ -144,12 +148,34 @@ function all() {
         {
             type : "input",
             message : "Please input Price..",
-            name : "price"
+            name : "price",
+            validate : function(input) {
+                if ( input > 0 ) {
+                    if(isNaN(input) ){
+                        return false;
+                    } else {
+                        return true;
+                    } 
+                } else {
+                    return false
+                }               
+            }
         },
         { 
             type : "input",
             message : "Please input Quantity..",
-            name : "qty"
+            name : "qty",
+            validate : function(input) {
+                if ( input > 0 ) {
+                    if(isNaN(input) || input % 1 !== 0 ){
+                        return false;
+                    } else {
+                        return true;
+                    } 
+                } else {
+                    return false
+                }               
+            }
         }
     ]).then(function(res){
         var itemI = res.item ;

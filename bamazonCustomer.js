@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var table = require('cli-table');
 var connection = mysql.createConnection({
     host: "localhost",
     port: "3306",
@@ -12,16 +13,17 @@ function start() {
     connection.query(
         "SELECT * FROM products",
         function(err,res){
+            var Table = new table({
+                head: ['ID', 'Product Name', 'Department', 'Price', 'Stock Quantity']
+            });
             var items = res.length+1
             if (err) throw err;
-            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *");
-            console.log("----------------------------------------------------------------------------------");
+            console.log("\n *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. * Welcome to BAMAZON *´¨`*:•. *.:｡✿*ﾟ‘ﾟ*¤°•★•:*´¨`*:•. *´¨`*");
+            console.log("------------------------------------------------------------------------------------------------");
             for (var i = 0 ; i < res.length ; i++) {
-                console.log("ID number : " + res[i].item_id + "    " + " Item : " + res[i].product_name);
-                console.log("Department : " + res[i].department_name)
-                console.log("Price($) : " + res[i].price + "    " + " Quantity : " + res[i].stock_quantity)
-                console.log("----------------------------------------------------------------------------------")
+                Table.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
             }
+                console.log(Table.toString());
             inquirer.prompt([{
                 type : "input",
                 message : "What is the ID of the item you would like to purchase?",
