@@ -2,12 +2,16 @@
   The app will take orders from customers and deplete stock from the store's inventory. Also, allow manager to add new products and add more quantity in the stock.
 
 
-----------------------------------------------------------------------------------------------------------------------------
-
 
 ## How does it work?
 
 1. `BamazonCustomer.js`
+
+
+
+      <img src="https://github.com/Pitchayarasm/bamazon/blob/master/gif/bamazonCustomer.gif" width="400" height="300">
+
+
 
     * Displays all the products in the store.
 
@@ -29,14 +33,46 @@
         * View Low Inventory
         * Add to Inventory
         * Add New Product
-        
+  
+    
     * If the manager selects `View Products for Sale`, it will display all of the products in the store including all of their details.
+    
+    
+    
+    
+         <img src="https://github.com/Pitchayarasm/bamazon/blob/master/gif/bamazonManager1.gif" width="400" height="300">
 
+         
+         
+    
     * If the manager selects `View Low Inventory`, it will display all the products that its Stock Quantity less than five.
+    
+    
+    
+    
+         <img src="https://github.com/Pitchayarasm/bamazon/blob/master/gif/bamazonManager2.gif" width="400" height="300">
 
+         
+    
+    
     * If the manager selects `Add to Inventory`, it will display all the product and ask the manager to select a product and add inventory.
 
+    
+    
+    
+         <img src="https://github.com/Pitchayarasm/bamazon/blob/master/gif/bamazonManager3.gif" width="400" height="300">
+
+         
+         
+       
     * If the manager selects `Add New Product`, it will ask the manager to add a completely new product to the store.
+    
+    
+    
+    
+         <img src="https://github.com/Pitchayarasm/bamazon/blob/master/gif/bamazonManager4.gif" width="400" height="300">
+
+         
     
     
 ----------------------------------------------------------------------------------------------------------------------------
