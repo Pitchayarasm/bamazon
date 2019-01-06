@@ -1,2 +1,2 @@
 # bamazon
-![bamazon](https://raw.github.com/pitchayarasm/bamazon/master/gif/bamazon1.gif)
+![bamazon](https://github.com/Pitchayarasm/bamazon/master/gif/bamazon1.gif)
